@@ -8,15 +8,10 @@ export function groupByKey<T>(items: T[], key: keyof T): GroupsMap<T> {
   for (const item of items) {
     const keyValue = item[key];
 
-    if (!((keyValue as unknown as string) in result)) {
-      result[keyValue as unknown as string] = [];
+    if (!((keyValue as string) in result)) {
+      result[keyValue as string] = [];
     }
-  }
-
-  for (const item of items) {
-    const keyValue = item[key];
-
-    result[keyValue as unknown as string].push(item);
+    result[keyValue as string].push(item);
   }
 
   return result;
